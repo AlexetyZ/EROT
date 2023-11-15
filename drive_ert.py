@@ -9,30 +9,54 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium import webdriver
 import dict_creator
-from config import Ratnikov_knd
+from config import Zaitsev_knd
 import importlib
 from Formular_table import get_phrases_list
 from direct_pxl import Operation
 import os
 import re
 import json
-
+from selenium.webdriver.chrome.service import Service
 
 
 
 class Erot:
-    def __init__(self):
-        self.options = undetected_chromedriver.ChromeOptions()
-        prefs = {"credentials_enable_service", False}
-        prefs = {"profile.password_manager_enabled": False}
+    def __init__(self, headless: bool = False):
+        self.options = webdriver.ChromeOptions()
+        binary_yandex_driver_file = 'C:\\Users\zaitsev_ad\PycharmProjects\WORK_sed\yandexdriver.exe'  # path to YandexDriver
+        browser_service = Service(executable_path=binary_yandex_driver_file)
 
+        self.options.add_argument('--ignore-certificate-errors-spki-list')
+        self.options.add_argument("disable-infobars")
+        prefs = {'profile.default_content_setting_values': {'images': 2,
+                                                            'plugins': 2, 'popups': 2, 'geolocation': 2,
+                                                            'notifications': 2, 'auto_select_certificate': 2,
+                                                            'mouselock': 2, 'mixed_script': 2, 'media_stream': 2,
+                                                            'media_stream_mic': 2, 'media_stream_camera': 2,
+                                                            'protocol_handlers': 2,
+                                                            'ppapi_broker': 2, 'automatic_downloads': 2,
+                                                            'midi_sysex': 2,
+                                                            'push_messaging': 2, 'ssl_cert_decisions': 2,
+                                                            'metro_switch_to_desktop': 2,
+                                                            'protected_media_identifier': 2, 'app_banner': 2,
+                                                            'site_engagement': 2,
+                                                            'durable_storage': 2}}
         self.options.add_experimental_option('prefs', prefs)
-        self.options.add_argument('--enable-save-password-bubble=false')
+        self.options.add_argument("--disable-native-events")
         self.options.add_argument("disable-infobars")
         self.options.add_argument("--disable-extensions")
-        self.browser = undetected_chromedriver.Chrome(chrome_options=self.options)
+
+        if headless is True:
+            self.options.headless = True
+        self.options.add_argument('--enable-save-password-bubble=false')
+
+        #
+        self.options.add_argument("--disable-extensions")
+        # print(self.options)
+
+        self.browser = webdriver.Chrome(service=browser_service, options=self.options)
         self.browser.get(config.url_main_page_knd)
         self.autorize()
 
@@ -49,11 +73,11 @@ class Erot:
 
         WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(
             (By.XPATH, config.ervk_login_input_xpath_0))).send_keys(
-            Ratnikov_knd['login'])
+            Zaitsev_knd['login'])
 
         WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(
             (By.XPATH, config.ervk_password_input_xpath_0))).send_keys(
-            Crypto().unpack_password(Ratnikov_knd['password']))
+            Crypto().unpack_password(Zaitsev_knd['password']))
 
         WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(
             (By.XPATH, config.ervk_submit_button_to_enter_in_akk_xpath_0))).click()
@@ -67,13 +91,14 @@ class Erot:
 
     def controller(self):
 
-        self.find_act(act_text='1.2.3685')
+        self.find_act(act_text='2.6.1.2573')
         self.driver()
 
         while True:
             user_command = input('введите П, чтобы продолжить введите З, чтобы завершить')
             if user_command == 'П':
                 importlib.reload(dict_creator)
+
 
                 self.driver()
             elif user_command == 'З':

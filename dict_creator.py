@@ -3,7 +3,7 @@ from direct_pxl import Operation
 
 
 def create_dict_OT():
-    file_path = '/Volumes/KINGSTON/построчные таблицы/табл 5.2.xlsx'
+    file_path = "C:\\Users\zaitsev_ad\Documents\ЕРОТ\построчные таблицы\\2573 - 1.xlsx"
     operation = Operation(file_path)
     p_q_dict = operation.get_phrase_and_question()
     phrase = p_q_dict[0]
@@ -11,11 +11,11 @@ def create_dict_OT():
     dict_ot = get_phrases_list(
         'B',
         'C',
-        'D',
-        'E',
-        'F',
-        'G',
-        'H',
+        # 'D',
+        # 'E',
+        # 'F',
+        # 'G',
+        # 'H',
         # 'I',
         # 'J',
         # 'K',
@@ -33,3 +33,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

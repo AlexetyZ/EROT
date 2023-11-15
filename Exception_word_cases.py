@@ -1006,7 +1006,7 @@ exceptions = {
 
 reg_ex_dict = {
     r'ция$': {
-        'gent': 'цию',
+        'gent': 'ции',
         'datv': 'ции',
         'accs': 'цию',
         'ablt': 'цией',

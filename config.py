@@ -1,9 +1,11 @@
 Ratnikov_knd = {'login': 'Ratnikov_da@gsen.ru',
                 'password': 'gAAAAABjWkb2V2UpTkKcf45b5h44dQ3L60Osl1RXy_FXzZQamCiOhOavsoXWwtdPvoPoxlhs4XBdbL78_Tp6e9q9SczBKH6b9g=='}
 
+Zaitsev_knd = {'login': 'zaitsev_ad@rospotrebnadzor.ru', 'password': 'gAAAAABj3Lbj_VxUc0Ykpotzi6nFLa2NEcNYZXhdBuHgOtDKkjWgIZB3rqQUZrDqp86M19D64ONMncUIl_pI1pz8GtRJ0Ccjhw=='}
 
 
-key_path = '/Volumes/KINGSTON/keys/primary.key'
+
+key_path = "D:\\keys\primary.key"
 
 
 url_main_page_knd = 'https://rg.gov.ru/'

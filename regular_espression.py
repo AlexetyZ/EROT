@@ -1,6 +1,6 @@
 import re
 
-phrase_temlpate = 'like0'
+phrase_temlpate = 'должны под'
 
 if 'like' in phrase_temlpate:
     print('jdns')

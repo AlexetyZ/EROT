@@ -70,8 +70,9 @@ def get_phrases_list(
                 )
 
                 # print(row)
+                # print(gender_reformed_phrase_temlpate)
                 phrase = formate_sentence(gender_reformed_phrase_temlpate % row)
-                question = formate_sentence(gender_reformed_question_temlpate % row)
+                question = formate_question(formate_sentence(gender_reformed_question_temlpate % row))
 
                 phrases_list[phrase] = question
             else:
@@ -97,7 +98,8 @@ def reformate_sentense_with_like(
             word = exp.split('$')[0]
             command = exp.split('$')[1]
             reference_number = int(command.split('like')[1])
-            reference = formatter_row[reference_number]
+            reference = formatter_row[reference_number] + ' ' + formatter_row[reference_number+1]
+            # print(reference)
             right_gender = gender_like_reference(reference, word)
             new_sentence_temlpate = f'{str(sentence_temlpate).replace(exp, right_gender)}'
             return new_sentence_temlpate
@@ -112,6 +114,26 @@ def formate_sentence(sentence):
     sentence = str(sentence).replace(" ?", "?").replace(" ?", "?")
 
     return sentence
+
+
+def formate_question(question):
+
+    question = str(question).replace('оваться ', 'уется ')
+    question = str(question).replace('оваться,', 'уется,')
+
+    question = str(question).replace('иться ', 'ится ')
+    question = str(question).replace('иться,', 'ится,')
+
+    question = str(question).replace('ться ', 'ется ')
+    question = str(question).replace('ться,', 'ется,')
+
+    question = str(question).replace('ать ', 'ает ')
+    question = str(question).replace('ать,', 'ает,')
+
+    question = str(question).replace(' быть ', ' ')
+    question = str(question).replace(' быть,', ', ')
+
+    return question
 
 
 def prepare_for_changes(string):
@@ -138,6 +160,7 @@ def come_back_changes_for_prepare(string):
 
 
 def gender_like_reference(reference, text):
+    # print(reference)
     analyser = pymorphy2.MorphAnalyzer()
     parse_text = analyser.parse(text)[0]
     gender = ''
@@ -145,28 +168,36 @@ def gender_like_reference(reference, text):
     split_reference = reference.split()
     for word in split_reference:
         parse_reference = analyser.parse(word)
+        # print(word)
         for parse_variants in parse_reference[:1]:
+            # print(parse_variants)
 
-            if parse_variants.tag.case == 'nomn':
+            if parse_variants.tag.case == 'nomn' or parse_variants.tag.case == 'accs':
 
                 if parse_variants.tag.number == 'plur':
                     new_text = parse_text.inflect({'plur'})[0]
 
+
                 else:
                     # print(parse_text.tag.POS)
-                    if parse_text.tag.POS == 'ADJS':
+                    if parse_text.tag.POS == 'ADJS' or parse_text.tag.POS == 'NOUN':
                         gender = parse_variants.tag.gender
+                        # print(f'{gender=}')
                         new_text = parse_text.inflect({gender})[0]
-                        break
+                        # return str(new_text)
+
                     if parse_text.tag.POS == 'VERB':
                         pass
 
-    return str(new_text)
+                return str(new_text)
+
+
+
+    # print(str(new_text))
+
 
 
 def change_case(phrase, case):
-
-
 
     splitphrase = phrase.split()
     # print(splitphrase)
