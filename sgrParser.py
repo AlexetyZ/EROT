@@ -9,6 +9,8 @@ _list_attr = ["STATUS", "STATUS_DATE", "NUMB_DOC", "SERIALNUMB", "BLANKVER", "DA
 
 DIRPATH = "C:\\Users\zaitsev_ad\Downloads"
 
+NO_VALUE_STRING = 'отсутствует (код 007)'
+
 
 def main():
     print(f'{datetime.now()} - начало операции')
@@ -23,7 +25,7 @@ def main():
             if attr in sgr:
                 row.append(sgr[attr])
             else:
-                row.append('отсутствует (код 007)')
+                row.append(NO_VALUE_STRING)
         sh.append(row)
     print(f'{datetime.now()} - сохранение файла')
     wb.save(os.path.join(DIRPATH, 'выгрузка СГР.xlsx'))
