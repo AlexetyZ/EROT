@@ -1,11 +1,11 @@
 Ratnikov_knd = {'login': 'Ratnikov_da@gsen.ru',
                 'password': 'gAAAAABjWkb2V2UpTkKcf45b5h44dQ3L60Osl1RXy_FXzZQamCiOhOavsoXWwtdPvoPoxlhs4XBdbL78_Tp6e9q9SczBKH6b9g=='}
 
-Zaitsev_knd = {'login': 'zaitsev_ad@rospotrebnadzor.ru', 'password': 'gAAAAABj3Lbj_VxUc0Ykpotzi6nFLa2NEcNYZXhdBuHgOtDKkjWgIZB3rqQUZrDqp86M19D64ONMncUIl_pI1pz8GtRJ0Ccjhw=='}
+# Zaitsev_knd = {'login': 'zaitsev@rospotrebnadzor.ru', 'password': b'gAAAAABl1fRREzK675IqWFjgxk_l6Q8LtjKqsq_dHgmS1_bHh7IZ3Piq8eLjXmP6aL3pBru2PZ8FCyku2Opi_Pq8El2A5jLByQ=='}
 
+Zaitsev_knd = {'login': 'ratnikov_da@gsen.ru', 'password': b'gAAAAABljsDzmLG8EvQf94HsG9gzha8W7GmvoIuF9ZT3892Rz-VbKvwuGc5DH6rBAv5JTPfKAvTm15e9f7e43c462qHpO2HeKQ=='}
 
-
-key_path = "D:\\keys\primary.key"
+key_path = "S:\Зайцев_АД\keys\primary.key"
 
 
 url_main_page_knd = 'https://rg.gov.ru/'

@@ -2,6 +2,8 @@ from Formular_table import get_phrases_list
 from direct_pxl import Operation
 from dict_creator import create_dict_OT
 import json
+import openpyxl
+from pprint import pprint
 
 
 def test_table_phrases():
@@ -20,8 +22,44 @@ def count_dolg():
 
     print(len(dolg))
 
+
+def form_ot_from_file(filePath):
+    wb = openpyxl.load_workbook(filePath)
+    sh = wb.worksheets[0]
+    SEs = []
+    currentSE = None
+    currentOTs = []
+    for row in sh.iter_rows(min_col=2, max_col=4, min_row=2, values_only=True):
+        print(row)
+        if row[0]:
+            if currentSE:
+                SEs.append({
+                    'seId': currentSE,
+                    'ots': currentOTs
+                })
+            currentSE = row[0]
+            currentOTs = []
+        currentOTs.append(
+            {
+                'title': row[1],
+                'checkQuestion': row[2],
+            }
+        )
+    else:
+        SEs.append({
+            'seId': currentSE,
+            'ots': currentOTs
+        })
+
+
+
+
+
+
+
 def main():
-    test_table_phrases()
+    filePath = "C:\\Users\zaitsev_ad\Desktop\ОТ.xlsx"
+    form_ot_from_file(filePath)
     # count_dolg()
     #  %s, в перио ды начала купального сезона, максимальной антропотехногенной нагрузки.
 

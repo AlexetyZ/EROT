@@ -50,5 +50,5 @@ if __name__ == '__main__':
     result = Crypto().unpack_password(config.Zaitsev_knd['password'])
 
 
-    # result = Crypto().get_hash_password(password=b'password')
+    # result = Crypto().get_hash_password(password=b'pass')
     print(result)
