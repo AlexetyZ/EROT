@@ -181,7 +181,7 @@ class Erot:
                                                         'penaltyNpaTitle': 'PenaltyAct_001',
                                                         'penaltyTitle': 'Ответственность'}]}],
                 'mrInstance': {'infiniteValidity': False,
-                            'mrEstablishmentObject': ['MREstablishmentObject_00003'],
+                            'mrEstablishmentObject': ['MREstablishmentObject_00003'],   # refKey
                             'validityEndDate': 1819746000000},
                 'suId': seId,
                 'titlesAndCheckQuestions': [*ots]}
